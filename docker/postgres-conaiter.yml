@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.0
+    container_name: reader_bot_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: bot_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
