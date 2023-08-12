@@ -13,14 +13,17 @@ public class ReportSurvey {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "int2 DEFAULT -1", nullable = false)
 	private Integer position;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "char(100)", nullable = false)
 	private String definition;
 
 	@Column(nullable = false)
 	private String question;
+
+	@Column(columnDefinition = "bool DEFAULT 't'", nullable = false)
+	private Boolean active;
 
 	@Enumerated
 	@Column(columnDefinition = "int2 DEFAULT 0", nullable = false)

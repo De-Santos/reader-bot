@@ -3,6 +3,8 @@ package com.hard.reader.bot.entity.table;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "books")
@@ -16,6 +18,9 @@ public class Book {
 
 	@Column(columnDefinition = "char(128)", nullable = false)
 	private String author;
+
+	@ManyToMany
+	private List<Tag> tags;
 
 	@Column(columnDefinition = "char(500)")
 	private String description;

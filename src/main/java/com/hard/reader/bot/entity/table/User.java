@@ -13,14 +13,17 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(columnDefinition = "bigint", unique = true, nullable = false)
+	private Long id; // chatId in the telegram
 
-	@Column(columnDefinition = "bigint", nullable = false)
-	private Long chatId;
-
-	@OneToMany(mappedBy = "userId")
+	@OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
 	private List<Report> reports;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List<Book> readBooks;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	private List<Book> wishBooks;
 
 	@Column(columnDefinition = "bool DEFAULT 'f'", nullable = false)
 	private Boolean hasAdditionalLife;
