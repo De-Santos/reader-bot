@@ -13,5 +13,9 @@ spring:
   liquibase:
     change-log: classpath:\db\changelog\changelog-master.xml
 
+bot:
+  token: "${bot_token}"
+  name: "${bot_name}"
+
 logging:
   config: classpath:\log\logback-config.xml
