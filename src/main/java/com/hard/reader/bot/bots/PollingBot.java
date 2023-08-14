@@ -1,7 +1,7 @@
 package com.hard.reader.bot.bots;
 
 import com.hard.reader.bot.config.BotConfig;
-import com.hard.reader.bot.utils.matcher.CommandMatcher;
+import com.hard.reader.bot.utils.matcher.impl.MatcherGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class PollingBot extends TelegramLongPollingBot {
 
 	private final BotConfig config;
-	private final CommandMatcher matcher;
+	private final MatcherGateway matcher;
 
 	@Override
 	public void onUpdateReceived(Update update) {
