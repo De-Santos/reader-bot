@@ -2,6 +2,7 @@ package com.hard.reader.bot.entity.table;
 
 import com.hard.reader.bot.entity.enums.ReaderRole;
 import com.hard.reader.bot.entity.enums.Role;
+import com.hard.reader.bot.entity.enums.State;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -36,6 +37,7 @@ public class User {
 	private Role role;
 
 	@Enumerated
+	@Column(columnDefinition = "int2 DEFAULT 0", nullable = false)
 	private ReaderRole readerRole;
 
 	@Column(columnDefinition = "date", nullable = false)
@@ -43,4 +45,12 @@ public class User {
 
 	@Column(columnDefinition = "int4 DEFAULT 0", nullable = false)
 	private Integer totalMinutesRead;
+
+	@Enumerated
+	@Column(columnDefinition = "int2 DEFAULT 0", nullable = false)
+	private State state;
+
+	@Column(columnDefinition = "int2 DEFAULT -1", nullable = false)
+	private Short surveyPosition;
+
 }

@@ -14,7 +14,7 @@ public class ReportSurvey {
 	private Long id;
 
 	@Column(columnDefinition = "int2 DEFAULT -1", nullable = false)
-	private Integer position;
+	private Short position;
 
 	@Column(columnDefinition = "char(100)", nullable = false)
 	private String definition;
