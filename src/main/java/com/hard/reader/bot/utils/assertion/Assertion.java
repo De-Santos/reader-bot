@@ -1,6 +1,7 @@
 package com.hard.reader.bot.utils.assertion;
 
 import com.hard.reader.bot.entity.enums.internal.Callback;
+import com.hard.reader.bot.entity.enums.internal.Command;
 import lombok.experimental.UtilityClass;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -30,5 +31,10 @@ public class Assertion {
 	public static boolean isThisCallback(Callback callback, Update update) {
 		if (!update.hasCallbackQuery()) return false;
 		return callback.getAction().equals(update.getCallbackQuery().getData());
+	}
+
+	public static boolean isThisCommand(Command command, Update update) {
+		if (!(update.hasMessage() && update.getMessage().hasText())) return false;
+		return update.getMessage().getText().startsWith(command.getAction());
 	}
 }

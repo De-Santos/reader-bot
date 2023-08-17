@@ -1,7 +1,7 @@
-package com.hard.reader.bot.utils.matcher.impl;
+package com.hard.reader.bot.matcher.impl;
 
+import com.hard.reader.bot.matcher.CallbackMatcher;
 import com.hard.reader.bot.service.BotService;
-import com.hard.reader.bot.utils.matcher.CallbackMatcher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;

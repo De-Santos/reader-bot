@@ -1,4 +1,4 @@
-package com.hard.reader.bot.utils.matcher;
+package com.hard.reader.bot.matcher;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
