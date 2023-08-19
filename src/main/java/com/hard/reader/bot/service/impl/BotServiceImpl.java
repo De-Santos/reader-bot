@@ -3,22 +3,17 @@ package com.hard.reader.bot.service.impl;
 import com.hard.reader.bot.dao.UserRepository;
 import com.hard.reader.bot.entity.enums.internal.Callback;
 import com.hard.reader.bot.entity.table.User;
-import com.hard.reader.bot.keyborad.buttons.impl.HelloButton;
 import com.hard.reader.bot.message.MessageFactory;
 import com.hard.reader.bot.service.BotService;
-import com.hard.reader.bot.utils.additional.UpdateUtils;
 import com.hard.reader.bot.utils.builder.EntityBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import static com.hard.reader.bot.keyborad.factory.KeyboardMarkupFactory.createHelloMarkup;
+import static com.hard.reader.bot.utils.additional.UpdateUtils.getChatId;
 
 @Log4j2
 @Component
@@ -33,15 +28,10 @@ public class BotServiceImpl implements BotService {
 		String chatId = update.getMessage().getChatId().toString();
 		String text = update.getMessage().getText();
 
-		InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
-		List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
-		keyboard.add(Collections.singletonList(new HelloButton().get()));
-		markup.setKeyboard(keyboard);
-
 		SendMessage message = new SendMessage();
 		message.setChatId(chatId);
 		message.setText("You said: " + text);
-		message.setReplyMarkup(markup);
+		message.setReplyMarkup(createHelloMarkup());
 		return message;
 	}
 
@@ -53,14 +43,19 @@ public class BotServiceImpl implements BotService {
 		return message;
 	}
 
-	public SendMessage start(Update update) {
-		final Long chatId = UpdateUtils.getChatId(update);
-		log.info("Create new user by start command by chatId: {}", chatId);
+	public SendMessage getStart(Update update) {
+		log.info("Call start command by chatId: {}", getChatId(update));
 		return messageFactory.buildStartMessage(update, saveUserIfNotExists(update));
 	}
 
+	@Override
+	public SendMessage getMenu(Update update) {
+		log.info("Call menu command by chatId: {}", getChatId(update));
+		return messageFactory.buildMenuMessage(update);
+	}
+
 	public User saveUserIfNotExists(Update update) {
-		return userRepository.findById(UpdateUtils.getChatId(update))
+		return userRepository.findById(getChatId(update))
 				.orElseGet(() -> userRepository.save(EntityBuilder.build(update)));
 	}
 }

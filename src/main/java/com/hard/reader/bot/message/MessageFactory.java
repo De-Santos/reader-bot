@@ -6,4 +6,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public interface MessageFactory {
 	SendMessage buildStartMessage(Update update, User user);
+
+	SendMessage buildMenuMessage(Update update);
 }

@@ -14,4 +14,14 @@ public class UpdateUtils {
 			throw new IllegalArgumentException("Could not get chatId");
 		}
 	}
+
+	public static String getUserName(Update update) {
+		if (update.hasMessage()) {
+			return update.getMessage().getFrom().getUserName();
+		} else if (update.hasCallbackQuery()) {
+			return update.getCallbackQuery().getFrom().getUserName();
+		} else {
+			throw new IllegalArgumentException("Could not get chatId");
+		}
+	}
 }

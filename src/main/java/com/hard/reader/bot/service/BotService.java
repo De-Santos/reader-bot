@@ -8,5 +8,7 @@ public interface BotService {
 
 	SendMessage sayHello(Update update);
 
-	SendMessage start(Update update);
+	SendMessage getStart(Update update);
+
+	SendMessage getMenu(Update update);
 }

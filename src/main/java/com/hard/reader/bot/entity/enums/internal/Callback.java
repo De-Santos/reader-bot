@@ -8,7 +8,9 @@ import lombok.Getter;
 public enum Callback {
 	EXIT("exit"),
 	STEP_BACK("back"),
-	SAY_HELLO("hello");
+	SAY_HELLO("hello"),
+	HELP("help"),
+	CREATE_REPORT("create report");
 
 	private final String action;
 }

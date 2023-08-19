@@ -6,7 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Command {
-	START("/start");
+	START("/start"),
+	MENU("/menu");
 
 	private final String action;
 }

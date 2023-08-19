@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import static com.hard.reader.bot.entity.enums.internal.Callback.EXIT;
 import static com.hard.reader.bot.entity.enums.internal.Callback.SAY_HELLO;
 import static com.hard.reader.bot.utils.assertion.Assertion.isThisCallback;
 
@@ -23,6 +24,8 @@ class CallbackMatcherImpl implements CallbackMatcher {
 		log.info("Callback have gotten");
 		if (isThisCallback(SAY_HELLO, update)) {
 			return botService.sayHello(update);
+		} else if (isThisCallback(EXIT, update)) {
+			return botService.getMenu(update);
 		} else {
 			SendMessage message = new SendMessage();
 			message.setChatId(update.getCallbackQuery().getMessage().getChatId());

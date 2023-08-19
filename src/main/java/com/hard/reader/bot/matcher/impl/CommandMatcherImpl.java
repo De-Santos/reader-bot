@@ -21,7 +21,8 @@ class CommandMatcherImpl implements CommandMatcher {
 	@Override
 	public SendMessage match(Update update) {
 		if (Assertion.isCommand(update)) {
-			if (Assertion.isThisCommand(Command.START, update)) return botService.start(update);
+			if (Assertion.isThisCommand(Command.START, update)) return botService.getStart(update);
+			if (Assertion.isThisCommand(Command.MENU, update)) return botService.getMenu(update);
 			else throw new IllegalArgumentException("Commands not implemented yet");
 		} else if (Assertion.isMessage(update)) {
 			return botService.echo(update);
